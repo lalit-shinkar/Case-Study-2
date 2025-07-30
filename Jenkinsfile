@@ -9,7 +9,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: 'develop', 
-                url: 'https://github.com/lalit-shinkar/devops-nodejs-pipeline.git'
+                url: 'https://github.com/lalit-shinkar/Case-Study-2.git'
 
                 script {
                     // Capture short commit hash
