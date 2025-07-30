@@ -10,9 +10,8 @@ pipeline {
             steps {
                 git branch: 'develop', 
                 url: 'https://github.com/lalit-shinkar/Case-Study-2.git'
-
                 script {
-                    // Capture short commit hash
+                    // Store Git commit hash right after cloning
                     env.GIT_COMMIT = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                 }
             }
@@ -35,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Build & Push Docker Image') {
+        stage('Build and Push Docker Image') {
             steps {
                 script {
                     sh 'docker buildx install || true'
@@ -56,23 +55,23 @@ pipeline {
             }
         }
 
-        stage('Generate Ansible Inventory') {
+        stage('Prepare Ansible') {
             steps {
                 script {
-                    // Get EC2 IP
+                    // Get EC2 public IP from Terraform
                     env.EC2_IP = sh(
                         script: "cd infra && terraform output -raw public_ip", 
                         returnStdout: true
                     ).trim()
 
-                    // Create ansible inventory
+                    // Create ansible directory and hosts.ini
                     sh 'mkdir -p ansible'
 
                     writeFile file: 'ansible/hosts.ini', text: """
-[webserver]
+[ec2]
 ${env.EC2_IP} ansible_user=ubuntu
 
-[webserver:vars]
+[ec2:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 """
@@ -81,7 +80,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
             }
         }
 
-        stage('Deploy with Ansible') {
+        stage('Run Ansible Playbook') {
             steps {
                 withCredentials([
                     sshUserPrivateKey(
@@ -101,7 +100,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
                                     -e "GIT_COMMIT=${env.GIT_COMMIT}"
                             """
                         } catch (Exception e) {
-                            error "❌ Ansible playbook execution failed: ${e.getMessage()}"
+                            error "Ansible deployment failed: ${e.getMessage()}"
                         }
                     }
                 }
