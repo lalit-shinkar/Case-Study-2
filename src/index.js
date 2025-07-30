@@ -8,217 +8,156 @@ app.get('/', (req, res) => {
     <html lang="en">
     <head>
       <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-      <title>DevOps Node.js App</title>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>DevOps Showcase | Lalit Shinkar</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
       <style>
-        :root {
-          --primary: #4361ee;
-          --secondary: #3a0ca3;
-          --accent: #f72585;
-          --light: #f8f9fa;
-          --dark: #212529;
-        }
-        
         body {
           margin: 0;
           padding: 0;
-          min-height: 100vh;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Roboto', sans-serif;
+          background: #0f2027;
+          background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
+          color: #f4f4f4;
           display: flex;
           justify-content: center;
           align-items: center;
-          color: var(--dark);
-          animation: gradientShift 15s ease infinite;
-          background-size: 200% 200%;
+          height: 100vh;
         }
-        
-        @keyframes gradientShift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        
-        .container {
-          background: rgba(255, 255, 255, 0.95);
-          padding: 2.5rem;
-          border-radius: 20px;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-          text-align: center;
-          max-width: 700px;
+
+        .card {
+          background-color: #1e2a38;
+          padding: 2rem;
+          border-radius: 15px;
+          max-width: 750px;
           width: 90%;
-          transform: translateY(0);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          backdrop-filter: blur(5px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+          text-align: center;
+          border: 1px solid #2d3f53;
         }
-        
-        .container:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        }
-        
+
         h1 {
-          color: var(--primary);
-          font-size: 2.5rem;
+          font-size: 2.2rem;
+          color: #00d4ff;
           margin-bottom: 0.5rem;
-          background: linear-gradient(to right, #4361ee, #3a0ca3);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
         }
-        
-        .tagline {
-          color: var(--secondary);
-          font-weight: 400;
+
+        .subtitle {
+          font-weight: 300;
+          font-size: 1.1rem;
+          color: #ccc;
           margin-bottom: 2rem;
-          font-size: 1.1rem;
         }
-        
-        .dev-name {
+
+        .highlight {
           display: inline-block;
-          background: linear-gradient(to right, #f72585, #b5179e);
-          padding: 0.5rem 1.5rem;
-          border-radius: 50px;
-          color: white;
-          font-weight: 600;
+          background: linear-gradient(to right, #ff416c, #ff4b2b);
+          padding: 0.4rem 1rem;
+          border-radius: 30px;
+          color: #fff;
+          font-weight: 500;
           margin: 1rem 0;
-          box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
-          animation: pulse 2s infinite;
         }
-        
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
-        
-        .description {
-          color: #555;
-          line-height: 1.8;
-          font-size: 1.1rem;
-          margin: 2rem 0;
+
+        ul {
+          list-style: none;
+          padding: 0;
           text-align: left;
+          margin-top: 2rem;
         }
-        
-        .description strong {
-          color: var(--secondary);
+
+        ul li {
+          padding: 0.4rem 0;
+          font-size: 1rem;
         }
-        
-        .tech-stack {
+
+        .stack {
+          margin-top: 2rem;
           display: flex;
-          justify-content: center;
           flex-wrap: wrap;
           gap: 10px;
-          margin: 2rem 0;
+          justify-content: center;
         }
-        
-        .tech-item {
-          background: var(--light);
-          padding: 0.5rem 1rem;
-          border-radius: 50px;
-          font-size: 0.9rem;
-          color: var(--primary);
-          border: 1px solid #e0e0e0;
-          transition: all 0.3s ease;
+
+        .stack span {
+          background-color: #fff;
+          color: #1e2a38;
+          padding: 0.4rem 1rem;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: transform 0.3s ease;
         }
-        
-        .tech-item:hover {
-          background: var(--primary);
-          color: white;
-          transform: translateY(-2px);
+
+        .stack span:hover {
+          transform: scale(1.05);
         }
-        
+
         .footer {
-          font-size: 0.9rem;
-          color: #888;
-          margin-top: 2rem;
+          margin-top: 2.5rem;
+          font-size: 0.85rem;
+          color: #999;
           display: flex;
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
-          gap: 15px;
         }
-        
-        .visit-count {
-          background: var(--light);
-          padding: 0.3rem 0.8rem;
-          border-radius: 50px;
-          font-weight: 600;
-          color: var(--accent);
+
+        .footer a {
+          color: #00d4ff;
+          margin-left: 10px;
+          text-decoration: none;
         }
-        
-        .social-links {
-          display: flex;
-          gap: 15px;
+
+        .social-icons {
+          margin-top: 0.5rem;
         }
-        
-        .social-icon {
-          color: var(--primary);
-          font-size: 1.2rem;
-          transition: all 0.3s ease;
+
+        .social-icons a {
+          margin: 0 10px;
+          font-size: 1.3rem;
+          color: #00d4ff;
         }
-        
-        .social-icon:hover {
-          transform: translateY(-3px) scale(1.1);
-        }
-        
-        .fa-linkedin:hover {
-          color: #0a66c2;
-        }
-        
-        .fa-github:hover {
-          color: #333;
-        }
-        
-        .server-info {
-          background: var(--light);
-          padding: 0.3rem 0.8rem;
-          border-radius: 50px;
+
+        .social-icons a:hover {
+          color: #ff4b2b;
         }
       </style>
     </head>
     <body>
-      <div class="container">
-        <h1>🚀 DevOps Node.js Application</h1>
-        <p class="tagline">Automated Deployment Pipeline with CI/CD</p>
-        
-        <div class="dev-name">👨‍💻 Rahul Bhatia | DevOps Engineer</div>
-        
-        <p class="description">
-          This application demonstrates a complete DevOps workflow featuring:
-          <br><br>
-          • <strong>CI/CD Pipeline</strong> with Jenkins<br>
-          • <strong>Containerization</strong> using Docker<br>
-          • <strong>Infrastructure as Code</strong> with Terraform<br>
-          • <strong>Configuration Management</strong> via Ansible<br>
-          • <strong>Cloud Deployment</strong> on AWS<br>
-          • <strong>Version Control</strong> with Git and GitHub
-        </p>
-        
-        <div class="tech-stack">
-          <span class="tech-item">Node.js</span>
-          <span class="tech-item">Express</span>
-          <span class="tech-item">Git</span>
-          <span class="tech-item">GitHub</span>
-          <span class="tech-item">Docker</span>
-          <span class="tech-item">Terraform</span>
-          <span class="tech-item">Ansible</span>
-          <span class="tech-item">AWS</span>
-          <span class="tech-item">Jenkins</span>
+      <div class="card">
+        <h1>🌐 DevOps Web App</h1>
+        <p class="subtitle">An end-to-end automation demo using modern DevOps tools</p>
+
+        <div class="highlight">👨‍💻 Lalit Shinkar | DevOps Practitioner</div>
+
+        <ul>
+          <li>✅ Continuous Integration with <strong>Jenkins</strong></li>
+          <li>🐳 Containerization using <strong>Docker</strong></li>
+          <li>⚙️ Infra as Code via <strong>Terraform</strong></li>
+          <li>🔧 Config Management using <strong>Ansible</strong></li>
+          <li>☁️ Hosted on <strong>AWS Cloud</strong></li>
+          <li>🔗 Version Control through <strong>Git & GitHub</strong></li>
+        </ul>
+
+        <div class="stack">
+          <span>Node.js</span>
+          <span>Express</span>
+          <span>Git</span>
+          <span>Docker</span>
+          <span>Ansible</span>
+          <span>Terraform</span>
+          <span>AWS</span>
+          <span>Jenkins</span>
         </div>
-        
+
         <div class="footer">
-          <div class="visit-count">Visits: ${Math.floor(Math.random() * 1000)}</div>
-          <div class="server-info">Server: http://localhost:${port}</div>
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/rahul-bhatia-6ba321207/" target="_blank" class="social-icon">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/rahulbhatia3422" target="_blank" class="social-icon">
-              <i class="fab fa-github"></i>
-            </a>
+          <div>Visits: ${Math.floor(Math.random() * 5000)}</div>
+          <div>Server: http://localhost:${port}</div>
+          <div class="social-icons">
+            <a href="https://linkedin.com/in/lalit-shinkar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/lalit-shinkar" target="_blank"><i class="fab fa-github"></i></a>
           </div>
         </div>
       </div>
@@ -228,5 +167,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`App running at http://localhost:${port}`);
+  console.log(\`🚀 Server running on http://localhost:\${port}\`);
 });
