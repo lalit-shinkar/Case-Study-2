@@ -67,6 +67,13 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]  # Restrict to your IP in production
   }
 
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["13.127.147.252/32"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
