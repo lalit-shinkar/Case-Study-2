@@ -9,9 +9,8 @@
     APP_PORT: 3000
 
   tasks:
-
     - name: Check if Docker is already installed
-      shell: docker --version
+      command: docker --version
       register: docker_installed
       ignore_errors: true
 
@@ -61,19 +60,20 @@
         enabled: yes
 
     - name: Remove existing container if exists
-      shell: "docker rm -f {{ CONTAINER_NAME }} || true"
+      command: "docker rm -f {{ CONTAINER_NAME }}"
+      ignore_errors: true
 
     - name: Pull Docker image
-      shell: "docker pull {{ IMAGE }}"
+      command: "docker pull {{ IMAGE }}"
 
     - name: Run Docker container
-  docker_container:
-    name: "{{ CONTAINER_NAME }}"
-    image: "{{ IMAGE }}"
-    state: started
-    restart_policy: unless-stopped
-    ports:
-      - "80:3000"  # Map host port 80 → container port 3000
+      docker_container:
+        name: "{{ CONTAINER_NAME }}"
+        image: "{{ IMAGE }}"
+        state: started
+        restart_policy: unless-stopped
+        ports:
+          - "80:{{ APP_PORT }}"
 
     # --- CLEANUP SECTION STARTS HERE ---
     - name: Copy cleanup.sh script to EC2
@@ -83,7 +83,7 @@
         mode: '0755'
 
     - name: Run cleanup.sh script on EC2
-      shell: bash /home/ubuntu/cleanup.sh
+      command: bash /home/ubuntu/cleanup.sh
       register: cleanup_result
 
     - name: Show cleanup logs
