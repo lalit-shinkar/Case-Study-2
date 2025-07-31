@@ -5,7 +5,7 @@ set -euo pipefail
 GIT_COMMIT=$(git rev-parse --short HEAD)
 
 # Define image name using your DockerHub username
-IMAGE="rahul0315/devops-nodejs-app:$GIT_COMMIT"
+IMAGE="shinkarlalit18/Case-Study-2:$GIT_COMMIT"
 
 echo "[INFO] Building Docker image: $IMAGE"
 docker build -t $IMAGE .
