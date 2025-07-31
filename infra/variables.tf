@@ -18,3 +18,7 @@ variable "key_name" {
   type        = string
 }
 
+variable "app_port" {
+  description = "Port for Node.js app"
+  default     = 3000
+}
