@@ -67,13 +67,7 @@
       command: "docker pull {{ IMAGE }}"
 
     - name: Run Docker container
-      docker_container:
-        name: "{{ CONTAINER_NAME }}"
-        image: "{{ IMAGE }}"
-        state: started
-        restart_policy: unless-stopped
-        ports:
-          - "80:{{ APP_PORT }}"
+      shell: "docker run -d --name {{ CONTAINER_NAME }} -p 80:{{ APP_PORT }} {{ IMAGE }}"
 
     # --- CLEANUP SECTION STARTS HERE ---
     - name: Copy cleanup.sh script to EC2
