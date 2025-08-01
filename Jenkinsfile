@@ -37,7 +37,7 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    sh 'docker buildx install || true'
+                    
                     withCredentials([
                         usernamePassword(
                             credentialsId: 'case-study-2-DockerHubcred',
