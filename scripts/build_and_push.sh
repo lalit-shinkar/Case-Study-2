@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export DOCKER_BUILDKIT=0
 set -euo pipefail
 
 # Get Git commit ID (short)
