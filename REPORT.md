@@ -37,7 +37,7 @@ This report documents the implementation of a fully automated DevOps CI/CD pipel
 - Pull requests are enforced for merging into `main`
 - Review-based merges demonstrate GitHub collaboration and control
   
-![Branching](assets/Branching.jpg)
+![Branching](assets/Branching.png)
 
 ---
 
