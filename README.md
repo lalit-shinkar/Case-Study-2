@@ -3,7 +3,7 @@
 
 This project demonstrates a **complete DevOps pipeline** that builds, tests, provisions, configures, and deploys a simple Node.js web application on **AWS Free Tier**, using tools like Git, Github,  Docker, Dockerhub, Jenkins, Terraform, and Ansible.
 
-🔗 **GitHub Repo URL**: [https://github.com/rahulbhatia3422/devops-nodejs-app](https://github.com/rahulbhatia3422/devops-nodejs-app)
+🔗 **GitHub Repo URL**: [https://github.com/lalit-shinkar/Case-Study-2.git](https://github.com/lalit-shinkar/Case-Study-2.git)
 
 ---
 
